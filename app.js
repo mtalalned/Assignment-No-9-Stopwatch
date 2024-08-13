@@ -1,9 +1,9 @@
 let seconds = document.querySelector ('#seconds');
-let num_seconds= 45;
+let num_seconds= 0;
 let minutes = document.querySelector ('#minutes');
-let num_minutes= 58;
+let num_minutes= 0;
 let hours = document.querySelector ('#hours');
-let num_hours = 9;
+let num_hours = 0;
 let seconds_interval;
 let minutes_interval;
 let hours_interval;
@@ -80,11 +80,6 @@ function startStopwatch (){
             }, (60000 - (num_seconds * 1000)))
         } 
         
-        
-
-
-        
-
     // CONDITIONAL INTERVAL FOR HOURS
         
         // condition at start of the stopwatch
