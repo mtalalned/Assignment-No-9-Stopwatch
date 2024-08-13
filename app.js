@@ -127,6 +127,9 @@ function resetStopwatch() {
     clearInterval(hours_interval)
     clearInterval(minutes_interval)
     clearInterval(seconds_interval)
+    num_hours = 0
+    num_minutes = 0
+    num_seconds = 0
     hours.innerHTML = `00`
     minutes.innerHTML = `00`
     seconds.innerHTML = `00`
