@@ -75,7 +75,11 @@ function startStopwatch (){
 
         
 
-    // interval for hours
+    // CONDITIONAL INTERVAL FOR HOURS
+        
+
+    // condition at start of the stopwatch
+    if (num_minutes === 0 && num_seconds === 0){
         hours_interval = setInterval(function () {
             num_hours += 1
             if (num_hours <= 9){
@@ -84,11 +88,46 @@ function startStopwatch (){
                 hours.innerHTML = num_hours
             }
         }, 3600000);
-}
+    }
+    
+    // condition when the stopwatch is continued after stopping
+    else if (num_minutes > 0 && num_minutes < 60){
+        setTimeout (function(){
+            if (num_hours < 9){
+                num_hours += 1
+                hours.innerHTML = `0${num_hours}`
+             } else if (num_hours > 9) {
+                num_hours += 1
+                hours.innerHTML = num_hours
+             }
+            
+            hours_interval = setInterval(function () {
+                num_hours += 1
+                if (num_hours <= 9){
+                    hours.innerHTML = `0${num_hours}`
+                } else if (num_hours > 9 && num_hours < 60){
+                    hours.innerHTML = num_hours
+                }
+            }, 3600000);
+        }, (((59-num_minutes)*60*1000)+((60 - num_seconds) * 1000)))
+    }
+    }
+    
+    
 
 
 function holdStopwatch () {
     clearInterval(hours_interval)
     clearInterval(minutes_interval)
     clearInterval(seconds_interval)
+}
+
+
+function resetStopwatch() {
+    clearInterval(hours_interval)
+    clearInterval(minutes_interval)
+    clearInterval(seconds_interval)
+    hours.innerHTML = `00`
+    minutes.innerHTML = `00`
+    seconds.innerHTML = `00`
 }
