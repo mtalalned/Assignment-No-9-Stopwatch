@@ -7,6 +7,7 @@ let num_hours = 0;
 let seconds_interval;
 let minutes_interval;
 let hours_interval;
+let start_control = true
 
 
 function minutesInterval (){
@@ -37,7 +38,11 @@ function hoursInterval () {
 
 function startStopwatch (){
     
-    // INTERVAL FOR SECONDS
+    if (start_control === true) {
+
+        start_control = false
+
+        // INTERVAL FOR SECONDS
         seconds_interval = setInterval(function(){
             num_seconds += 1
             if (num_seconds <= 9){
@@ -104,6 +109,9 @@ function startStopwatch (){
 
             }, (((59-num_minutes)*60*1000)+((60 - num_seconds) * 1000)))
         }
+
+    }
+    
 }
     
     
@@ -111,6 +119,7 @@ function holdStopwatch () {
     clearInterval(hours_interval)
     clearInterval(minutes_interval)
     clearInterval(seconds_interval)
+    start_control = true
 }
 
 
@@ -124,4 +133,5 @@ function resetStopwatch() {
     hours.innerHTML = `00`
     minutes.innerHTML = `00`
     seconds.innerHTML = `00`
+    start_control = true
 }
